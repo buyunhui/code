@@ -76,7 +76,7 @@ def decorator(wrapper):
             else:
                 return function_wrapper(wrapped, wrapper.__get__(instance, type(instance)))
         return _execute(*args, **kwargs)
-    return function_wrapper(wrapper, _wrapper)
+    return function_wrapper(wrapper,  _wrapper)
 
 
 class with_arguments(object): 
@@ -88,9 +88,8 @@ class with_arguments(object):
     def __call__(self, wrapped, instance, args, kwargs):
         return wrapped(*args, **kwargs) 
 
-@with_arguments(arg=1)
+@with_arguments(1)
 def function():
-    print('sad')
     pass
 
 function()
