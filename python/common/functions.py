@@ -1,14 +1,13 @@
-def dec_singleton(cls, *args, **kwargs):
+def dec_singleton(cls, *args, **kwargs): # decorate
     instance = {}
     def _instance(*args, **kwargs):
-        print('instance', instance)
         if cls not in instance:
             instance[cls] = cls(*args, *kwargs)
         return instance[cls]
     return _instance
 
 
-class Singleton(object):
+class Singleton(object):  # decorate
     def __init__(self, obj):
         self.__instance = obj
 
@@ -19,7 +18,7 @@ class Singleton(object):
         return self.__instance
 
 
-class Meta_Singleton(type):
+class Meta_Singleton(type): #metaclass=Meta_Singleton
     def __init__(self, *args, **kwargs):
         self.__instance = None
         super(Singleton,self).__init__(*args, **kwargs)
@@ -30,8 +29,10 @@ class Meta_Singleton(type):
         return self.__instance
 
 
-class New_Singleton(object):
+class New_Singleton(object):  #inhert
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls,"_instance"):
             cls._instance = super(Singleton, cls).__new__(cls, *args, **kwargs)
         return cls._instance
+
+print("xhjkhjhjhjhjhjkkxx")
