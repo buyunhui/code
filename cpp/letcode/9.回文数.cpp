@@ -1,12 +1,9 @@
 /*
  * @lc app=leetcode.cn id=9 lang=cpp
  *
- * [9] ????¨C???¡ã
+ * [9] å›žæ–‡æ•°
  */
 #include <string> 
-#include <iostream>
-using namespace std;
-
 class Solution {
 public:
     bool isPalindrome(int x) {
@@ -17,14 +14,7 @@ public:
         
         if (str_ == resStr)
             return true;
-        return false
-
-       
+        return false;
     }
 };
 
-int main()
-{
-    cout << Solution().isPalindrome(0);
-    return 0;
-}

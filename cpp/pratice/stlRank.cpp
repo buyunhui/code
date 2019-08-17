@@ -7,12 +7,10 @@ using namespace std;
 void permutation(vector<int>& str, int length)
 {
 	sort(str.begin(), str.end());
-	
     do
 	{
 		for(int i=0; i<length; i++)
 			cout<<str[i];
-
 		cout<<endl;
 	}while(next_permutation(str.begin(),str.end()));
 
