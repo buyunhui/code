@@ -19,7 +19,6 @@ class Ba{
         bool checkPosIsAvaliable(int x, int y);
 
     private:
-    
     size_t lenth;
     vector<vector<bool>> board;
     vector<vector<Res>> res;
@@ -30,7 +29,7 @@ class Ba{
 
 void Ba::init() {
     board.resize(lenth);
-    res.resize(1000);
+    res.resize(92);
     for(size_t i =0; i < lenth; i++) {
         board[i].resize(lenth, false);
     }
@@ -67,7 +66,7 @@ void Ba::findQueen(int i, vector<Res> & rst1) {
         return;
     }
     else {
-        for (size_t loop = 0; loop < lenth; loop++) {
+        for (auto loop = 0; loop < lenth; loop++) {
             if (checkPosIsAvaliable(i, loop)) { 
                 board[i][loop] = true;
                 rst.push_back(Res{i,(int)loop});
@@ -83,14 +82,13 @@ void Ba::findQueen(int i, vector<Res> & rst1) {
 
 void Ba::print()
 {
-    /*
+    
     for (auto var: res) {
         for (auto pos: var)
         {
-            cout << pos.x << "  " << pos.y << " ";
+            cout << pos.x << " " << pos.y << "    " << endl;
         }
-        cout << endl;
-    } */
+    } 
     cout << num;
 }
 int main(){

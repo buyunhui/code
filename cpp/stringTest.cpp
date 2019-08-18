@@ -9,13 +9,68 @@
 
 using namespace std;
 
+
 // 数字类型（char int double）序列 转string
 template<typename T>
-string  VectorNum2String(const vector<T>& result)
+string  VectorNum2String(const vector<T>& result, bool isReverse=false)
 {
     stringstream ss;
-    std::reverse_copy(result.begin(), result.end(), std::ostream_iterator<T>(ss, ""));
+    if (isReverse) {
+      std::reverse_copy(result.begin(), result.end(), std::ostream_iterator<T>(ss, ""));
+    } else {
+      std::copy(result.begin(), result.end(), std::ostream_iterator<T>(ss, ""));
+    }
     return ss.str();
+}
+
+string  SliceStrFromChar(const string& inStr, const string beginChar, bool isReverse=false)
+{
+  string resStr(inStr);
+  if (isReverse) {
+    reverse(resStr.begin(), resStr.end());
+  }
+  size_t pos = resStr.find_first_of(beginChar); 
+  return resStr.substr(pos);
+}
+
+string  SliceStrFromNotChar(const string& inStr, const string beginChar, bool isReverse=false)
+{
+  string resStr(inStr);
+  if (isReverse) {
+    reverse(resStr.begin(), resStr.end());
+  }
+  size_t pos = resStr.find_first_not_of(beginChar); 
+  return resStr.substr(pos);
+}
+
+template<typename T>
+void TokenizeStr(const string& str, vector<string>& tokens, const T& delimiters)
+{
+  // Skip delimiters at beginning.
+  string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+  // Find first "non-delimiter".
+  string::size_type pos     = str.find_first_of(delimiters, lastPos);
+  while (string::npos != pos || string::npos != lastPos)
+  {
+    // Found a token, add it to the vector.
+    tokens.push_back(str.substr(lastPos, pos - lastPos));
+    // Skip delimiters.  Note the "not_of"
+    lastPos = str.find_first_not_of(delimiters, pos);
+    // Find next "non-delimiter"
+    pos = str.find_first_of(delimiters, lastPos);
+  }
+}
+
+vector<string> splitStrByChar(const string &str, const char pattern = '\n')
+{
+    vector<string> res;
+    stringstream input(str);   //读取str到字符串流中
+    string temp;
+    while(getline(input, temp, pattern))
+    {
+        res.push_back(temp);
+    }
+    return res;
 }
 
 /*
@@ -45,24 +100,14 @@ int main()
 {
     vector<double> test1(10, 1.1);
    
-    std::array<int, 5> charray { 2, 16, 77, 34, 50 };
+    //std::array<int, 5> charray { 2, 16, 77, 34, 50 };
 
-    std::cout << charray.data() << '\n';
-    cout << VectorNum2String(test1);
-
-std::string base="this is a test string.";
-  std::string str2="n example";
-  std::string str3="sample phrase";
-  std::string str4="useful.";
-
-  // replace signatures used in the same order as described above:
-
-  // Using positions:                 0123456789*123456789*12345
-  std::string str=base;           // "this is a test string."
-  str.replace(9,5,str2);          // "this is an example string." (1)
-  str.replace(19,6,str3,7,6);     // "this is an example phrase." (2)
-  str.replace(8,10,"just a");     // "this is just a phrase."     (3)
-  str.replace(8,6,"a shorty",2,5);  // "this is a short phrase."    (4)
-  
-  std::cout << str << '\n';
+    //std::cout << charray.data() << '\n';
+   // cout << VectorNum2String(test1);
+   vector<int> test2({1,1,1,1,2});
+   // cout << VectorNum2String(test2);
+   string x("asda1dasd12asda");
+   vector<string>out;
+   out = splitStrByChar(x, '1');
+   cout << out.size();
 }

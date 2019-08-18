@@ -1,0 +1,12 @@
+/*
+ * @lc app=leetcode.cn id=51 lang=cpp
+ *
+ * [51] N皇后
+ */
+class Solution {
+public:
+    vector<vector<string>> solveNQueens(int n) {
+        
+    }
+};
+
