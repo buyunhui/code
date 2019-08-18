@@ -8,19 +8,17 @@
 #include <cstring>
 
 using namespace std;
-constexpr size_t PER_LINE_INPUT_NUM = 5;
-
 
 template<typename T>
-void GetLinesInputData(vector<vector<T>> &inputData, size_t& lineNum)
+void GetLinesInputData(const size_t perLineNum, vector<vector<T>> &inputData, size_t& lineNum)
 {
     cin >> lineNum;
     inputData.reserve(lineNum);
    
     for(auto loopRow = 0; loopRow < lineNum; loopRow++) {
         vector<T> tmpVec;
-        tmpVec.reserve(PER_LINE_INPUT_NUM);
-        for(auto loopCol = 0; loopCol < PER_LINE_INPUT_NUM; loopCol++){
+        tmpVec.reserve(perLineNum);
+        for(auto loopCol = 0; loopCol < perLineNum; loopCol++){
             T cinTmp;
             cin >> cinTmp;
             tmpVec.push_back((T)cinTmp);
@@ -48,7 +46,7 @@ int main()
 {
     size_t lineNum = 0;
     vector<vector<int>> inputData;
-    GetLinesInputData(inputData, lineNum);
+    GetLinesInputData(2,inputData, lineNum);
     printOutData(inputData);
 
     vector<int> test;

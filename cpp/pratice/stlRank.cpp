@@ -13,7 +13,6 @@ void permutation(vector<int>& str, int length)
 			cout<<str[i];
 		cout<<endl;
 	}while(next_permutation(str.begin(),str.end()));
-
 }
 
 int main(void)

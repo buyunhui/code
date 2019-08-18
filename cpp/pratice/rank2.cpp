@@ -52,7 +52,7 @@ void Permutation(T list[], int start, int end, int &num)
 
 int main()
 {
-    int my_list[4] = {1, 1, 1, 1};
+    int my_list[4] = {1, 2, 3, 4};
     int num =0;
     Permutation(my_list, 0, 4, num);
     cout <<num;
